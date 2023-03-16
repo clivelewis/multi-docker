@@ -13,3 +13,9 @@ after_success:
   - docker build -t clivelewis/multi-nginx ./nginx
   - docker build -t clivelewis/multi-server ./server
   - docker build -t clivelewis/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push clivelewis/multi-client
+  - docker push clivelewis/multi-nginx
+  - docker push clivelewis/multi-server
+  - docker push clivelewis/multi-worker
